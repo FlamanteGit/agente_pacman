@@ -1,0 +1,26 @@
+@RELATION all_data_pacman
+
+@ATTRIBUTE positionX NUMERIC
+@ATTRIBUTE positionY NUMERIC
+@ATTRIBUTE alive1 {True, False}
+@ATTRIBUTE alive2 {True, False}
+@ATTRIBUTE alive3 {True, False}
+@ATTRIBUTE alive4 {True, False}
+@ATTRIBUTE position1X NUMERIC
+@ATTRIBUTE position1Y NUMERIC
+@ATTRIBUTE position2X NUMERIC
+@ATTRIBUTE position2Y NUMERIC
+@ATTRIBUTE position3X NUMERIC
+@ATTRIBUTE position3Y NUMERIC
+@ATTRIBUTE position4X NUMERIC
+@ATTRIBUTE position4Y NUMERIC
+@ATTRIBUTE distance1 NUMERIC
+@ATTRIBUTE distance2 NUMERIC
+@ATTRIBUTE distance3 NUMERIC
+@ATTRIBUTE distance4 NUMERIC
+@ATTRIBUTE distanceNearestFood NUMERIC
+@ATTRIBUTE actualScore NUMERIC
+@ATTRIBUTE nextScore NUMERIC
+@ATTRIBUTE movement {Stop, South, East, West, North}
+
+@data
