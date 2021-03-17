@@ -346,20 +346,19 @@ class BasicAgentAA(BustersAgent):
         #actualizamos el valor de la variable todo con la información actual para poder usarla en el tick siguiente
         BasicAgentAA.todo = str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + ","
         #concatenamos la informacion de los fantasmas a la variable todo
-        for ghost in gameState.getLivingGhosts():
-            print("vivos " + str(ghost))
-            BasicAgentAA.todo = BasicAgentAA.todo + str(ghost) + ","
+        living_ghost = gameState.getLivingGhosts().count(True)
+        BasicAgentAA.todo = BasicAgentAA.todo + str(living_ghost) + ","
+        for i in range(1, len(gameState.getLivingGhosts())):
+            BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.getLivingGhosts()[i]) + ","
         for ghost in gameState.getGhostPositions():
-            print("posiciones " + str(ghost[0]) + " " + str(ghost[1]))
             BasicAgentAA.todo = BasicAgentAA.todo + str(ghost[0]) + "," + str(ghost[1]) + ","
         for ghost in gameState.data.ghostDistances:
-            print("distancias " + str(ghost))
-            BasicAgentAA.todo = BasicAgentAA.todo + str(-1) if ghost is None else str(ghost) + ","
+            BasicAgentAA.todo = BasicAgentAA.todo + (str(-1) if ghost is None else str(ghost)) + ","
 
-        BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.data.score) + "," + str(gameState.data.agentStates[0].getDirection())
+        BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(gameState.data.agentStates[0].getDirection())
         if ignore_first:
             return ""
-        return buffer + "," + str(gameState.getScore()) + "\n"
+        return buffer + "," + str(gameState.getScore()) + "," + str(gameState.getLivingGhosts().count(True)) + "," + str(gameState.getNumFood()) + "\n"
 
     def printLineData1(self, gameState):
         return str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + "," + str(

@@ -730,6 +730,10 @@ class Game(object):
             # Allow the important information to be printed in the output file
             if agentIndex == 0:
                 self.extractInfo()
+            # Allow to write the last 2 lines in the .arff file
+            if self.state.getLivingGhosts().count(True) == 0:
+                self.extractInfo()
+                self.extractInfo()
 
         # inform a learning agent of the game result
         for agentIndex, agent in enumerate(self.agents):
@@ -747,7 +751,7 @@ class Game(object):
 
     def extractInfo(self):
         from bustersAgents import BasicAgentAA
-        f_all = open("all_data_pacman.arff", "a")
+        f_all = open("./ficheros/test_samemaps_keyboard.arff", "a")
         f_all.write(BasicAgentAA.printLineData(self, self.state))
         f_all.close()
 

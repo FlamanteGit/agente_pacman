@@ -2,6 +2,7 @@
 
 @ATTRIBUTE positionX NUMERIC
 @ATTRIBUTE positionY NUMERIC
+@ATTRIBUTE numGhosts NUMERIC
 @ATTRIBUTE alive1 {True, False}
 @ATTRIBUTE alive2 {True, False}
 @ATTRIBUTE alive3 {True, False}
@@ -20,51 +21,10 @@
 @ATTRIBUTE distance4 NUMERIC
 @ATTRIBUTE distanceNearestFood NUMERIC
 @ATTRIBUTE actualScore NUMERIC
+@ATTRIBUTE foodCount NUMERIC
 @ATTRIBUTE movement {Stop, South, East, West, North}
 @ATTRIBUTE nextScore NUMERIC
+@ATTRIBUTE nextNumGhost NUMERIC
+@ATTRIBUTE nextFoodCount NUMERIC
 
 @data
-3,7,-1,Stop,-2
-3,7,-2,Stop,-3
-3,7,-3,Stop,-4
-2,6,-4,East,-5
-1,7,-5,North,194
-6,-18,194,North,193
-7,-19,193,West,192
-8,-110,192,West,191
-9,-111,191,West,190
-10,-112,190,West,189
-11,-113,189,West,188
-12,-114,188,West,187
-13,-115,187,West,386
-14,-116,386,West,385
-15,-117,385,West,384
-14,-116,384,East,383
-13,-115,383,South,382
-13,-115,382,South,381
-13,-115,381,South,380
-12,-114,380,East,379
-11,-113,379,South,378
-10,-112,378,South,377
-9,-113,377,South,376
-10,-114,376,West,375
-9,-115,375,South,574
-8,-116,574,South,573
-7,-115,573,East,572
-6,-114,572,East,571
-5,-113,571,East,570
-4,-112,570,East,569
-3,-111,569,East,568
-2,-110,568,East,567
-3,7,-1,Stop,-2
-3,7,-2,Stop,-3
-3,7,-3,Stop,-4
-3,7,-4,Stop,-5
-3,7,-5,Stop,-6
-3,7,-6,Stop,-7
-3,7,-7,Stop,-8
-3,7,-8,Stop,-9
-3,7,-9,Stop,-10
-3,7,-10,Stop,-11
-3,7,-11,Stop,-12
-3,7,-12,Stop,-13
