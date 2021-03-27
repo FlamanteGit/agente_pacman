@@ -751,10 +751,9 @@ class Game(object):
 
     def extractInfo(self):
         from bustersAgents import BasicAgentAA
-        f_all = open("./ficheros/test_samemaps_keyboard.arff", "a")
+        f_all = open("./ficheros/test_othermaps_tutorial1.arff", "a")
         f_all.write(BasicAgentAA.printLineData(self, self.state))
         f_all.close()
-
 
 
 
