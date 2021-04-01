@@ -355,10 +355,37 @@ class BasicAgentAA(BustersAgent):
         for ghost in gameState.data.ghostDistances:
             BasicAgentAA.todo = BasicAgentAA.todo + (str(-1) if ghost is None else str(ghost)) + ","
 
+        BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.mostProbablyDirection(self, gameState))
+
         BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(gameState.data.agentStates[0].getDirection())
         if ignore_first:
             return ""
         return buffer + "," + str(gameState.getScore()) + "," + str(gameState.getLivingGhosts().count(True)) + "," + str(gameState.getNumFood()) + "\n"
+
+    def mostProbablyDirection(self, gameState):
+        index = 0
+        aux = 0
+        minDistance = 100
+        for ghost in gameState.data.ghostDistances:
+            if ghost is not None:
+                if ghost > 0 and ghost < minDistance:
+                    minDistance = ghost
+                    index = aux
+            aux += 1
+
+        up = False
+        down = False
+        left = False
+        right = False
+        if gameState.getPacmanPosition()[0] - gameState.getGhostPositions()[index][0] > 0:
+            left = True
+        if gameState.getPacmanPosition()[0] - gameState.getGhostPositions()[index][0] < 0:
+            right = True
+        if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] > 0:
+            down = True
+        if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] < 0:
+            up = True
+        return str(up) + "," + str(down) + "," + str(left) + "," + str(right) + ","
 
     def printLineData1(self, gameState):
         return str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + "," + str(

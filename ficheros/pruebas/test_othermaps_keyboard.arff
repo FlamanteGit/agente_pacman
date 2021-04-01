@@ -1,0 +1,232 @@
+@RELATION test_othermaps_keyboard
+
+@ATTRIBUTE positionX NUMERIC
+@ATTRIBUTE positionY NUMERIC
+@ATTRIBUTE numGhosts NUMERIC
+@ATTRIBUTE alive1 {True, False}
+@ATTRIBUTE alive2 {True, False}
+@ATTRIBUTE alive3 {True, False}
+@ATTRIBUTE alive4 {True, False}
+@ATTRIBUTE position1X NUMERIC
+@ATTRIBUTE position1Y NUMERIC
+@ATTRIBUTE position2X NUMERIC
+@ATTRIBUTE position2Y NUMERIC
+@ATTRIBUTE position3X NUMERIC
+@ATTRIBUTE position3Y NUMERIC
+@ATTRIBUTE position4X NUMERIC
+@ATTRIBUTE position4Y NUMERIC
+@ATTRIBUTE distance1 NUMERIC
+@ATTRIBUTE distance2 NUMERIC
+@ATTRIBUTE distance3 NUMERIC
+@ATTRIBUTE distance4 NUMERIC
+@ATTRIBUTE nearestGhostUp {True, False}
+@ATTRIBUTE nearestGhostDown {True, False}
+@ATTRIBUTE nearestGhostLeft {True, False}
+@ATTRIBUTE nearestGhostRight {True, False}
+@ATTRIBUTE distanceNearestFood NUMERIC
+@ATTRIBUTE actualScore NUMERIC
+@ATTRIBUTE foodCount NUMERIC
+@ATTRIBUTE movement {Stop, South, East, West, North}
+@ATTRIBUTE nextScore NUMERIC
+@ATTRIBUTE nextNumGhost NUMERIC
+@ATTRIBUTE nextFoodCount NUMERIC
+
+@data
+8,3,4,True,True,True,True,1,3,1,7,10,7,17,3,7,11,6,9,True,False,False,True,3,-1,22,Stop,-2,4,22
+8,3,4,True,True,True,True,1,3,1,7,10,7,17,3,7,11,6,9,True,False,False,True,3,-2,22,Stop,-3,4,22
+8,3,4,True,True,True,True,1,3,1,7,10,7,17,3,7,11,6,9,True,False,False,True,3,-3,22,Stop,-4,4,22
+8,3,4,True,True,True,True,1,3,1,7,10,7,17,3,7,11,6,9,True,False,False,True,3,-4,22,Stop,-5,4,22
+7,3,4,True,True,True,True,1,3,1,7,10,7,17,3,6,10,7,10,False,False,True,False,2,-5,22,West,-6,4,22
+6,3,4,True,True,True,True,1,3,1,7,10,7,17,3,5,9,8,11,False,False,True,False,1,-6,22,West,93,4,21
+5,3,4,True,True,True,True,1,3,1,7,10,7,17,3,4,8,9,12,False,False,True,False,1,93,21,West,192,4,20
+4,3,4,True,True,True,True,1,3,1,7,10,7,17,3,3,7,10,13,False,False,True,False,1,192,20,West,291,4,19
+3,3,4,True,True,True,True,1,3,1,7,10,7,17,3,2,6,11,14,False,False,True,False,1,291,19,West,390,4,18
+2,3,4,True,True,True,True,1,3,1,7,10,7,17,3,1,5,12,15,False,False,True,False,2,390,18,West,589,3,18
+1,3,3,False,True,True,True,1,1,1,7,10,7,17,3,-1,4,13,16,True,False,False,False,1,589,18,West,688,3,17
+1,4,3,False,True,True,True,1,1,1,7,10,7,17,3,-1,3,12,17,True,False,False,False,1,688,17,North,787,3,16
+1,5,3,False,True,True,True,1,1,1,7,10,7,17,3,-1,2,11,18,True,False,False,False,1,787,16,North,886,3,15
+1,6,3,False,True,True,True,1,1,1,7,10,7,17,3,-1,1,10,19,True,False,False,False,2,886,15,North,1085,2,15
+1,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,9,20,False,False,False,True,1,1085,15,North,1184,2,14
+2,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,8,19,False,False,False,True,6,1184,14,East,1183,2,14
+3,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,7,18,False,False,False,True,5,1183,14,East,1182,2,14
+4,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,6,17,False,False,False,True,4,1182,14,East,1181,2,14
+5,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,5,16,False,False,False,True,3,1181,14,East,1180,2,14
+6,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,4,15,False,False,False,True,4,1180,14,East,1179,2,14
+7,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,3,14,False,False,False,True,5,1179,14,East,1178,2,14
+8,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,2,13,False,False,False,True,6,1178,14,East,1177,2,14
+9,7,2,False,False,True,True,1,1,3,1,10,7,17,3,-1,-1,1,12,False,False,False,True,5,1177,14,East,1376,1,14
+10,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,11,False,True,False,True,4,1376,14,East,1375,1,14
+11,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,10,False,True,False,True,3,1375,14,East,1374,1,14
+12,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,9,False,True,False,True,2,1374,14,East,1373,1,14
+13,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,8,False,True,False,True,1,1373,14,East,1472,1,13
+14,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,7,False,True,False,True,1,1472,13,East,1571,1,12
+15,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,6,False,True,False,True,1,1571,12,East,1670,1,11
+16,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,5,False,True,False,True,1,1670,11,East,1769,1,10
+17,7,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,4,False,True,False,False,1,1769,10,East,1868,1,9
+17,6,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,3,False,True,False,False,1,1868,9,South,1967,1,8
+17,5,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,2,False,True,False,False,1,1967,8,South,2066,1,7
+17,4,1,False,False,False,True,1,1,3,1,5,1,17,3,-1,-1,-1,1,False,True,False,False,2,2066,7,South,2265,0,7
+17,3,0,False,False,False,False,1,1,3,1,5,1,17,3,-1,-1,-1,-1,False,True,True,False,2,2265,7,South,2265,0,7
+9,3,4,True,True,True,True,8,7,10,7,11,7,17,9,5,5,6,14,True,False,True,False,1,-1,68,Stop,-2,4,68
+9,3,4,True,True,True,True,8,7,10,7,11,7,17,9,5,5,6,14,True,False,True,False,1,-2,68,Stop,-3,4,68
+9,3,4,True,True,True,True,8,7,10,7,11,7,17,9,5,5,6,14,True,False,True,False,1,-3,68,Stop,96,4,67
+8,3,4,True,True,True,True,8,7,10,7,11,7,17,9,4,6,7,15,True,False,False,False,1,96,67,West,195,4,66
+7,3,4,True,True,True,True,8,7,10,7,11,7,17,9,5,7,8,16,True,False,False,True,1,195,66,West,294,4,65
+6,3,4,True,True,True,True,8,7,10,7,11,7,17,9,6,8,9,17,True,False,False,True,1,294,65,West,393,4,64
+6,4,4,True,True,True,True,8,7,10,7,11,7,17,9,5,7,8,16,True,False,False,True,1,393,64,North,492,4,63
+6,5,4,True,True,True,True,8,7,10,7,11,7,17,9,4,6,7,15,True,False,False,True,1,492,63,North,591,4,62
+6,6,4,True,True,True,True,8,7,10,7,11,7,17,9,3,5,6,14,True,False,False,True,1,591,62,North,690,4,61
+6,7,4,True,True,True,True,8,7,10,7,11,7,17,9,2,4,5,13,False,False,False,True,1,690,61,North,689,4,61
+7,7,4,True,True,True,True,8,7,10,7,11,7,17,9,1,3,4,12,False,False,False,True,2,689,61,East,888,3,61
+8,7,3,False,True,True,True,1,1,10,7,11,7,17,9,-1,2,3,11,False,False,False,True,2,888,61,East,887,3,61
+9,7,3,False,True,True,True,1,1,10,7,11,7,17,9,-1,1,2,10,False,False,False,True,1,887,61,East,1086,2,61
+10,7,2,False,False,True,True,1,1,3,1,11,7,17,9,-1,-1,1,9,False,False,False,True,1,1086,61,East,1285,1,61
+11,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,8,True,False,False,True,2,1285,61,East,1284,1,61
+11,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,8,True,False,False,True,2,1284,61,East,1283,1,61
+10,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,9,True,False,False,True,1,1283,61,West,1282,1,61
+9,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,10,True,False,False,True,1,1282,61,West,1381,1,60
+9,8,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,9,True,False,False,True,1,1381,60,North,1480,1,59
+9,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,8,False,False,False,True,1,1480,59,North,1579,1,58
+10,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,7,False,False,False,True,1,1579,58,East,1678,1,57
+11,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,6,False,False,False,True,1,1678,57,East,1777,1,56
+12,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,5,False,False,False,True,1,1777,56,East,1876,1,55
+13,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,4,False,False,False,True,1,1876,55,East,1975,1,54
+13,8,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,5,True,False,False,True,1,1975,54,South,2074,1,53
+13,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,6,True,False,False,True,1,2074,53,South,2173,1,52
+14,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,5,True,False,False,True,1,2173,52,East,2272,1,51
+15,7,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,4,True,False,False,True,1,2272,51,East,2371,1,50
+15,8,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,3,True,False,False,True,1,2371,50,North,2470,1,49
+15,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,2,False,False,False,True,1,2470,49,North,2569,1,48
+16,9,1,False,False,False,True,1,1,3,1,5,1,17,9,-1,-1,-1,1,False,False,False,True,2,2569,48,East,2768,0,48
+17,9,0,False,False,False,False,1,1,3,1,5,1,17,9,-1,-1,-1,-1,False,True,True,False,2,2768,48,East,2768,0,48
+9,3,4,True,True,True,True,1,7,8,7,11,7,18,7,12,5,6,13,True,False,True,False,1,-1,53,Stop,-2,4,53
+9,3,4,True,True,True,True,1,7,8,7,11,7,18,7,12,5,6,13,True,False,True,False,1,-2,53,Stop,-3,4,53
+9,3,4,True,True,True,True,1,7,8,7,11,7,18,7,12,5,6,13,True,False,True,False,1,-3,53,Stop,96,4,52
+8,3,4,True,True,True,True,1,7,8,7,11,7,18,7,11,4,7,14,True,False,False,False,1,96,52,West,195,4,51
+7,3,4,True,True,True,True,1,7,8,7,11,7,18,7,10,5,8,15,True,False,False,True,1,195,51,West,294,4,50
+6,3,4,True,True,True,True,1,7,8,7,11,7,18,7,9,6,9,16,True,False,False,True,1,294,50,West,393,4,49
+5,3,4,True,True,True,True,1,7,8,7,11,7,18,7,8,7,10,17,True,False,False,True,1,393,49,West,492,4,48
+4,3,4,True,True,True,True,1,7,8,7,11,7,18,7,7,8,11,18,True,False,True,False,1,492,48,West,591,4,47
+3,3,4,True,True,True,True,1,7,8,7,11,7,18,7,6,9,12,19,True,False,True,False,1,591,47,West,690,4,46
+2,3,4,True,True,True,True,1,7,8,7,11,7,18,7,5,10,13,20,True,False,True,False,1,690,46,West,789,4,45
+1,3,4,True,True,True,True,1,7,8,7,11,7,18,7,4,11,14,21,True,False,False,False,1,789,45,West,888,4,44
+1,4,4,True,True,True,True,1,7,8,7,11,7,18,7,3,10,13,20,True,False,False,False,1,888,44,North,987,4,43
+1,5,4,True,True,True,True,1,7,8,7,11,7,18,7,2,9,12,19,True,False,False,False,1,987,43,North,1086,4,42
+1,6,4,True,True,True,True,1,7,8,7,11,7,18,7,1,8,11,18,True,False,False,False,2,1086,42,North,1285,3,42
+1,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,7,10,17,False,False,False,True,1,1285,42,North,1284,3,42
+1,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,7,10,17,False,False,False,True,1,1284,42,North,1383,3,41
+2,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,6,9,16,False,False,False,True,1,1383,41,East,1482,3,40
+3,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,5,8,15,False,False,False,True,1,1482,40,East,1581,3,39
+4,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,4,7,14,False,False,False,True,1,1581,39,East,1680,3,38
+5,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,3,6,13,False,False,False,True,1,1680,38,East,1779,3,37
+6,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,2,5,12,False,False,False,True,1,1779,37,East,1878,3,36
+6,6,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,3,6,13,True,False,False,True,1,1878,36,South,1977,3,35
+6,5,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,4,7,14,True,False,False,True,1,1977,35,South,2076,3,34
+7,5,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,3,6,13,True,False,False,True,1,2076,34,East,2175,3,33
+8,5,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,2,5,12,True,False,False,False,1,2175,33,East,2274,3,32
+9,5,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,3,4,11,True,False,True,False,1,2274,32,East,2273,3,32
+9,6,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,2,3,10,True,False,True,False,2,2273,32,North,2272,3,32
+9,7,3,False,True,True,True,1,1,8,7,11,7,18,7,-1,1,2,9,False,False,True,False,3,2272,32,North,2471,2,32
+8,7,2,False,False,True,True,1,1,3,1,11,7,18,7,-1,-1,3,10,False,False,False,True,4,2471,32,West,2470,2,32
+8,7,2,False,False,True,True,1,1,3,1,11,7,18,7,-1,-1,3,10,False,False,False,True,4,2470,32,West,2469,2,32
+9,7,2,False,False,True,True,1,1,3,1,11,7,18,7,-1,-1,2,9,False,False,False,True,3,2469,32,East,2468,2,32
+10,7,2,False,False,True,True,1,1,3,1,11,7,18,7,-1,-1,1,8,False,False,False,True,2,2468,32,East,2667,1,32
+11,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,7,False,False,False,True,2,2667,32,East,2666,1,32
+10,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,8,False,False,False,True,2,2666,32,West,2665,1,32
+9,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,9,False,False,False,True,3,2665,32,West,2664,1,32
+9,6,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,10,True,False,False,True,2,2664,32,South,2663,1,32
+9,5,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,11,True,False,False,True,1,2663,32,South,2762,1,31
+10,5,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,10,True,False,False,True,1,2762,31,East,2861,1,30
+11,5,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,9,True,False,False,True,1,2861,30,East,2960,1,29
+12,5,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,8,True,False,False,True,1,2960,29,East,3059,1,28
+13,5,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,7,True,False,False,True,1,3059,28,East,3158,1,27
+13,6,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,6,True,False,False,True,1,3158,27,North,3257,1,26
+13,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,5,False,False,False,True,1,3257,26,North,3356,1,25
+14,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,4,False,False,False,True,1,3356,25,East,3455,1,24
+15,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,3,False,False,False,True,1,3455,24,East,3554,1,23
+16,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,2,False,False,False,True,1,3554,23,East,3653,1,22
+17,7,1,False,False,False,True,1,1,3,1,5,1,18,7,-1,-1,-1,1,False,False,False,True,2,3653,22,East,3852,0,22
+18,7,0,False,False,False,False,1,1,3,1,5,1,18,7,-1,-1,-1,-1,False,True,True,False,1,3852,22,East,3852,0,22
+4,5,4,True,True,True,True,1,4,3,3,4,3,14,4,4,3,2,11,False,True,False,False,4,-1,2,Stop,-2,4,2
+4,5,4,True,True,True,True,1,4,3,3,4,3,14,4,4,3,2,11,False,True,False,False,4,-2,2,Stop,-3,4,2
+4,5,4,True,True,True,True,1,4,3,3,4,3,14,4,4,3,2,11,False,True,False,False,4,-3,2,Stop,-4,4,2
+3,5,4,True,True,True,True,1,4,3,3,4,3,14,4,3,2,3,12,False,True,False,False,3,-4,2,West,-5,4,2
+2,5,4,True,True,True,True,1,4,3,3,4,3,14,4,2,3,4,13,False,True,True,False,2,-5,2,West,-6,4,2
+1,5,4,True,True,True,True,1,4,3,3,4,3,14,4,1,4,5,14,False,True,False,False,2,-6,2,West,193,3,2
+1,4,3,False,True,True,True,1,1,3,3,4,3,14,4,-1,3,4,13,False,True,False,True,1,193,2,South,292,3,1
+1,3,3,False,True,True,True,1,1,3,3,4,3,14,4,-1,2,3,14,False,False,False,True,1,292,1,South,391,3,0
+2,3,3,False,True,True,True,1,1,3,3,4,3,14,4,-1,1,2,13,False,False,False,True,-1,391,0,East,590,2,0
+3,3,2,False,False,True,True,1,1,3,1,4,3,14,4,-1,-1,1,12,False,False,False,True,-1,590,0,East,789,1,0
+4,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,11,True,False,False,True,-1,789,0,East,788,1,0
+5,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,10,True,False,False,True,-1,788,0,East,787,1,0
+6,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,9,True,False,False,True,-1,787,0,East,786,1,0
+7,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,8,True,False,False,True,-1,786,0,East,785,1,0
+8,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,7,True,False,False,True,-1,785,0,East,784,1,0
+9,3,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,6,True,False,False,True,-1,784,0,East,783,1,0
+9,4,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,5,False,False,False,True,-1,783,0,North,782,1,0
+9,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,6,False,True,False,True,-1,782,0,North,781,1,0
+9,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,6,False,True,False,True,-1,781,0,North,780,1,0
+10,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,5,False,True,False,True,-1,780,0,East,779,1,0
+11,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,4,False,True,False,True,-1,779,0,East,778,1,0
+12,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,3,False,True,False,True,-1,778,0,East,777,1,0
+13,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,2,False,True,False,True,-1,777,0,East,776,1,0
+14,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,1,False,True,False,False,-1,776,0,East,775,1,0
+14,5,1,False,False,False,True,1,1,3,1,5,1,14,4,-1,-1,-1,1,False,True,False,False,-1,775,0,East,974,0,0
+14,4,0,False,False,False,False,1,1,3,1,5,1,14,4,-1,-1,-1,-1,False,True,True,False,-1,974,0,South,974,0,0
+12,10,4,True,True,True,True,5,6,5,12,13,6,13,12,11,9,5,3,True,False,False,True,-1,-1,0,Stop,-2,4,0
+12,10,4,True,True,True,True,5,6,5,12,13,6,13,12,11,9,5,3,True,False,False,True,-1,-2,0,Stop,-3,4,0
+12,10,4,True,True,True,True,5,6,5,12,13,6,13,12,11,9,5,3,True,False,False,True,-1,-3,0,Stop,-4,4,0
+12,10,4,True,True,True,True,5,6,5,12,13,6,13,12,11,9,5,3,True,False,False,True,-1,-4,0,Stop,-5,4,0
+12,10,4,True,True,True,True,5,6,5,12,13,6,13,12,11,9,5,3,True,False,False,True,-1,-5,0,Stop,-6,4,0
+13,10,4,True,True,True,True,5,6,5,12,13,6,13,12,12,10,4,2,True,False,False,False,-1,-6,0,East,-7,4,0
+14,10,4,True,True,True,True,5,6,5,12,13,6,13,12,13,11,5,3,True,False,True,False,-1,-7,0,East,-8,4,0
+14,9,4,True,True,True,True,5,6,5,12,13,6,13,12,12,12,4,4,False,True,True,False,-1,-8,0,South,-9,4,0
+14,8,4,True,True,True,True,5,6,5,12,13,6,13,12,11,13,3,5,False,True,True,False,-1,-9,0,South,-10,4,0
+14,7,4,True,True,True,True,5,6,5,12,13,6,13,12,10,14,2,6,False,True,True,False,-1,-10,0,South,-11,4,0
+14,6,4,True,True,True,True,5,6,5,12,13,6,13,12,9,15,1,7,False,False,True,False,-1,-11,0,South,188,3,0
+13,6,3,True,True,False,True,5,6,5,12,5,1,13,12,8,14,-1,6,True,False,False,False,-1,188,0,West,187,3,0
+12,6,3,True,True,False,True,5,6,5,12,5,1,13,12,7,13,-1,7,False,False,True,False,-1,187,0,West,186,3,0
+12,5,3,True,True,False,True,5,6,5,12,5,1,13,12,8,14,-1,8,True,False,True,False,-1,186,0,South,185,3,0
+12,4,3,True,True,False,True,5,6,5,12,5,1,13,12,9,15,-1,9,True,False,True,False,-1,185,0,South,184,3,0
+11,4,3,True,True,False,True,5,6,5,12,5,1,13,12,8,14,-1,10,True,False,True,False,-1,184,0,West,183,3,0
+10,4,3,True,True,False,True,5,6,5,12,5,1,13,12,7,13,-1,11,True,False,True,False,-1,183,0,West,182,3,0
+10,4,3,True,True,False,True,5,6,5,12,5,1,13,12,7,13,-1,11,True,False,True,False,-1,182,0,West,181,3,0
+10,3,3,True,True,False,True,5,6,5,12,5,1,13,12,8,14,-1,12,True,False,True,False,-1,181,0,South,180,3,0
+9,3,3,True,True,False,True,5,6,5,12,5,1,13,12,7,13,-1,13,True,False,True,False,-1,180,0,West,179,3,0
+8,3,3,True,True,False,True,5,6,5,12,5,1,13,12,6,12,-1,14,True,False,True,False,-1,179,0,West,178,3,0
+7,3,3,True,True,False,True,5,6,5,12,5,1,13,12,5,11,-1,15,True,False,True,False,-1,178,0,West,177,3,0
+7,4,3,True,True,False,True,5,6,5,12,5,1,13,12,4,10,-1,14,True,False,True,False,-1,177,0,North,176,3,0
+7,5,3,True,True,False,True,5,6,5,12,5,1,13,12,3,9,-1,13,True,False,True,False,-1,176,0,North,175,3,0
+7,6,3,True,True,False,True,5,6,5,12,5,1,13,12,2,8,-1,12,False,False,True,False,-1,175,0,North,174,3,0
+6,6,3,True,True,False,True,5,6,5,12,5,1,13,12,1,7,-1,13,False,False,True,False,-1,174,0,West,373,2,0
+5,6,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,6,-1,14,True,False,False,False,-1,373,0,West,372,2,0
+4,6,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,7,-1,15,True,False,False,True,-1,372,0,West,371,2,0
+4,7,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,6,-1,14,True,False,False,True,-1,371,0,North,370,2,0
+4,8,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,5,-1,13,True,False,False,True,-1,370,0,North,369,2,0
+4,9,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,12,True,False,False,True,-1,369,0,North,368,2,0
+3,9,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,5,-1,13,True,False,False,True,-1,368,0,West,367,2,0
+2,9,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,6,-1,14,True,False,False,True,-1,367,0,West,366,2,0
+2,10,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,5,-1,13,True,False,False,True,-1,366,0,North,365,2,0
+2,11,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,12,True,False,False,True,-1,365,0,North,364,2,0
+2,12,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,3,-1,11,False,False,False,True,-1,364,0,North,363,2,0
+2,13,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,12,False,True,False,True,-1,363,0,North,362,2,0
+2,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,5,-1,13,False,True,False,True,-1,362,0,North,361,2,0
+3,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,12,False,True,False,True,-1,361,0,East,360,2,0
+4,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,3,-1,11,False,True,False,True,-1,360,0,East,359,2,0
+5,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,2,-1,10,False,True,False,False,-1,359,0,East,358,2,0
+6,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,3,-1,9,False,True,True,False,-1,358,0,East,357,2,0
+7,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,8,False,True,True,False,-1,357,0,East,356,2,0
+8,14,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,5,-1,7,False,True,True,False,-1,356,0,East,355,2,0
+8,13,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,4,-1,6,False,True,True,False,-1,355,0,South,354,2,0
+8,12,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,3,-1,5,False,False,True,False,-1,354,0,South,353,2,0
+7,12,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,2,-1,6,False,False,True,False,-1,353,0,West,352,2,0
+6,12,2,False,True,False,True,1,1,5,12,5,1,13,12,-1,1,-1,7,False,False,True,False,-1,352,0,West,551,1,0
+5,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,8,False,False,False,True,-1,551,0,West,550,1,0
+6,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,7,False,False,False,True,-1,550,0,East,549,1,0
+7,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,6,False,False,False,True,-1,549,0,East,548,1,0
+8,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,5,False,False,False,True,-1,548,0,East,547,1,0
+9,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,4,False,False,False,True,-1,547,0,East,546,1,0
+10,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,3,False,False,False,True,-1,546,0,East,545,1,0
+11,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,2,False,False,False,True,-1,545,0,East,544,1,0
+12,12,1,False,False,False,True,1,1,3,1,5,1,13,12,-1,-1,-1,1,False,False,False,True,-1,544,0,East,743,0,0
+13,12,0,False,False,False,False,1,1,3,1,5,1,13,12,-1,-1,-1,-1,False,True,True,False,-1,743,0,East,743,0,0
