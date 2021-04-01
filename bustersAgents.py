@@ -354,7 +354,28 @@ class BasicAgentAA(BustersAgent):
             BasicAgentAA.todo = BasicAgentAA.todo + str(ghost[0]) + "," + str(ghost[1]) + ","
         for ghost in gameState.data.ghostDistances:
             BasicAgentAA.todo = BasicAgentAA.todo + (str(-1) if ghost is None else str(ghost)) + ","
+        """
+        legal = gameState.getLegalActions(0)
+        if Directions.NORTH in legal:
+            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
+        else:
+            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
 
+        if Directions.SOUTH in legal:
+            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
+        else:
+            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
+
+        if Directions.EAST in legal:
+            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
+        else:
+            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
+
+        if Directions.WEST in legal:
+            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
+        else:
+            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
+        """
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.mostProbablyDirection(self, gameState))
 
         BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(gameState.data.agentStates[0].getDirection())
