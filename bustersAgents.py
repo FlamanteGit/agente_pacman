@@ -344,7 +344,7 @@ class BasicAgentAA(BustersAgent):
             ignore_first = True
         #actualizamos el valor de la variable todo con la información actual para poder usarla en el tick siguiente
         BasicAgentAA.todo = str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + ","
-        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.data.agentStates[0].getDirection()) + ","
+        #BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.data.agentStates[0].getDirection()) + ","
         #concatenamos la informacion de los fantasmas a la variable todo
         living_ghost = gameState.getLivingGhosts().count(True)
         BasicAgentAA.todo = BasicAgentAA.todo + str(living_ghost) + ","
@@ -378,6 +378,10 @@ class BasicAgentAA(BustersAgent):
         """
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.mostProbablyDirection(self, gameState))
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.angleClosestGhost(self, gameState)) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1])) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1)) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1])) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1)) + ","
         BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(move)
         if ignore_first:
             return ""
