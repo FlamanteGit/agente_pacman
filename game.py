@@ -719,6 +719,15 @@ class Game(object):
 
             # Allow for game specific conditions (winning, losing, etc.)
             self.rules.process(self.state, self)
+
+            # Allow the important information to be printed in the output file
+            if agentIndex == 0:
+                self.extractInfo(action)
+            # Allow to write the last 2 lines in the .arff file
+            if self.state.getLivingGhosts().count(True) == 0:
+                self.extractInfo(action)
+                self.extractInfo(action)
+
             # Track progress
             if agentIndex == numAgents + 1: self.numMoves += 1
             # Next agent
@@ -727,13 +736,7 @@ class Game(object):
             if _BOINC_ENABLED:
                 boinc.set_fraction_done(self.getProgress())
 
-            # Allow the important information to be printed in the output file
-            if agentIndex == 0:
-                self.extractInfo()
-            # Allow to write the last 2 lines in the .arff file
-            if self.state.getLivingGhosts().count(True) == 0:
-                self.extractInfo()
-                self.extractInfo()
+
 
         # inform a learning agent of the game result
         for agentIndex, agent in enumerate(self.agents):
@@ -749,10 +752,10 @@ class Game(object):
                     return
         self.display.finish()
 
-    def extractInfo(self):
+    def extractInfo(self, move):
         from bustersAgents import BasicAgentAA
         f_all = open("./ficheros/pruebas/test_othermaps_keyboard.arff", "a")
-        f_all.write(BasicAgentAA.printLineData(self, self.state))
+        f_all.write(BasicAgentAA.printLineData(self, self.state, move))
         f_all.close()
 
 

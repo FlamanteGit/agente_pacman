@@ -11,8 +11,7 @@ from __future__ import print_function
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
-
-
+import math
 from builtins import range
 from builtins import object
 import util
@@ -336,7 +335,7 @@ class BasicAgentAA(BustersAgent):
 
     #todo almacena la informacion del tic anterior
     todo = ""
-    def printLineData(self, gameState):
+    def printLineData(self, gameState, move):
         #guardamos en una variable local la información del tick anterior
         buffer = BasicAgentAA.todo
         #controlamos el primer tick para no escribir la primera linea de manera defectuosa
@@ -345,6 +344,7 @@ class BasicAgentAA(BustersAgent):
             ignore_first = True
         #actualizamos el valor de la variable todo con la información actual para poder usarla en el tick siguiente
         BasicAgentAA.todo = str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.data.agentStates[0].getDirection()) + ","
         #concatenamos la informacion de los fantasmas a la variable todo
         living_ghost = gameState.getLivingGhosts().count(True)
         BasicAgentAA.todo = BasicAgentAA.todo + str(living_ghost) + ","
@@ -377,11 +377,28 @@ class BasicAgentAA(BustersAgent):
             BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
         """
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.mostProbablyDirection(self, gameState))
-
-        BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(gameState.data.agentStates[0].getDirection())
+        BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.angleClosestGhost(self, gameState)) + ","
+        BasicAgentAA.todo = BasicAgentAA.todo + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.getScore()) + "," + str(gameState.getNumFood()) + "," + str(move)
         if ignore_first:
             return ""
         return buffer + "," + str(gameState.getScore()) + "," + str(gameState.getLivingGhosts().count(True)) + "," + str(gameState.getNumFood()) + "\n"
+
+    def angleClosestGhost(self, gameState):
+        index = 0
+        aux = 0
+        minDistance = 100
+        for ghost in gameState.data.ghostDistances:
+            if ghost is not None:
+                if ghost > 0 and ghost < minDistance:
+                    minDistance = ghost
+                    index = aux
+            aux += 1
+        myradians = math.atan2(gameState.getGhostPositions()[index][1] - gameState.getPacmanPosition()[1], gameState.getGhostPositions()[index][0] - gameState.getPacmanPosition()[0])
+        if myradians < 0:
+            myradians += 2 * math.pi
+
+        angle = round(math.degrees(myradians)) % 360
+        return angle
 
     def mostProbablyDirection(self, gameState):
         index = 0
