@@ -1,4 +1,6 @@
 from __future__ import print_function
+from wekaI import Weka
+
 # bustersAgents.py
 # ----------------
 # Licensing Information:  You are free to use or extend these projects for
@@ -233,6 +235,8 @@ class BasicAgentAA(BustersAgent):
         BustersAgent.registerInitialState(self, gameState)
         self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = 0
+        self.weka = Weka()
+        self.weka.start_jvm()
 
     ''' Example of counting something'''
     def countFood(self, gameState):
@@ -312,26 +316,9 @@ class BasicAgentAA(BustersAgent):
         #if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
         return move
 
-    def printLineDataViejo(self, gameState):
-        x = gameState.getPacmanPosition()[0]
-        y = gameState.getPacmanPosition()[1]
-        next_score = gameState.getScore() - 1
-        if gameState.data.agentStates[0].getDirection() == "North":
-            y = y + 1
-        elif gameState.data.agentStates[0].getDirection() == "South":
-            y = y - 1
-        elif gameState.data.agentStates[0].getDirection() == "West":
-            x = x - 1
-        elif gameState.data.agentStates[0].getDirection() == "East":
-            x = x + 1
-        print(gameState.data.food[x][y])
+    def chooseActionWeka(self):
 
-        if gameState.data.food[x][y]:
-            next_score = next_score + 100
-        elif gameState.getGhostPositions()[0] == (x, y) or gameState.getGhostPositions()[1] == (x, y) or \
-                gameState.getGhostPositions()[2] == (x, y) or gameState.getGhostPositions()[3] == (x, y):
-            next_score = next_score + 200
-        return str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + "," + str(gameState.getLivingGhosts()[1]) + "," + str(gameState.getLivingGhosts()[2]) + "," + str(gameState.getLivingGhosts()[3]) + "," + str(gameState.getLivingGhosts()[4]) + "," + str(gameState.getGhostPositions()[0][0]) + "," + str(gameState.getGhostPositions()[0][1]) + "," + str(gameState.getGhostPositions()[1][0]) + "," + str(gameState.getGhostPositions()[1][1]) + "," + str(gameState.getGhostPositions()[2][0]) + "," + str(gameState.getGhostPositions()[2][1]) + "," + str(gameState.getGhostPositions()[3][0]) + "," + str(gameState.getGhostPositions()[3][1]) + "," + str(-1 if gameState.data.ghostDistances[0] is None else gameState.data.ghostDistances[0]) + "," + str(-1 if gameState.data.ghostDistances[1] is None else gameState.data.ghostDistances[1]) + "," + str(-1 if gameState.data.ghostDistances[2] is None else gameState.data.ghostDistances[2]) + "," + str(-1 if gameState.data.ghostDistances[3] is None else gameState.data.ghostDistances[3]) + "," + str(-1 if gameState.getDistanceNearestFood() is None else gameState.getDistanceNearestFood()) + "," + str(gameState.data.score) + "," + str(next_score) + "," + str(gameState.data.agentStates[0].getDirection())
+
 
     #todo almacena la informacion del tic anterior
     todo = ""
@@ -354,28 +341,7 @@ class BasicAgentAA(BustersAgent):
             BasicAgentAA.todo = BasicAgentAA.todo + str(ghost[0]) + "," + str(ghost[1]) + ","
         for ghost in gameState.data.ghostDistances:
             BasicAgentAA.todo = BasicAgentAA.todo + (str(-1) if ghost is None else str(ghost)) + ","
-        """
-        legal = gameState.getLegalActions(0)
-        if Directions.NORTH in legal:
-            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
-        else:
-            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
 
-        if Directions.SOUTH in legal:
-            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
-        else:
-            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
-
-        if Directions.EAST in legal:
-            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
-        else:
-            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
-
-        if Directions.WEST in legal:
-            BasicAgentAA.todo = BasicAgentAA.todo + "True" + ","
-        else:
-            BasicAgentAA.todo = BasicAgentAA.todo + "False" + ","
-        """
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.mostProbablyDirection(self, gameState))
         BasicAgentAA.todo = BasicAgentAA.todo + str(BasicAgentAA.angleClosestGhost(self, gameState)) + ","
         BasicAgentAA.todo = BasicAgentAA.todo + str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1])) + ","
@@ -428,23 +394,3 @@ class BasicAgentAA(BustersAgent):
         if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] < 0:
             up = True
         return str(up) + "," + str(down) + "," + str(left) + "," + str(right) + ","
-
-    def printLineData1(self, gameState):
-        return str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + "," + str(
-            gameState.getLivingGhosts()[1]) + "," + str(gameState.getLivingGhosts()[2]) + "," + str(
-            gameState.getLivingGhosts()[3]) + "," + str(gameState.getLivingGhosts()[4]) + "," + str(
-            -1 if gameState.data.ghostDistances[0] is None else gameState.data.ghostDistances[0]) + "," + str(
-            -1 if gameState.data.ghostDistances[1] is None else gameState.data.ghostDistances[1]) + "," + str(
-            -1 if gameState.data.ghostDistances[2] is None else gameState.data.ghostDistances[2]) + "," + str(
-            -1 if gameState.data.ghostDistances[3] is None else gameState.data.ghostDistances[3]) + "," + str(
-            gameState.getDistanceNearestFood()) + "," + str(gameState.data.agentStates[0].getDirection())
-
-    def printLineData2(self, gameState):
-        return str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + "," + str(
-            gameState.getLivingGhosts()[1]) + "," + str(gameState.getLivingGhosts()[2]) + "," + str(
-            gameState.getLivingGhosts()[3]) + "," + str(gameState.getLivingGhosts()[4]) + "," + str(
-            gameState.getGhostPositions()[0][0]) + "," + str(gameState.getGhostPositions()[0][1]) + "," + str(
-            gameState.getGhostPositions()[1][0]) + "," + str(gameState.getGhostPositions()[1][1]) + "," + str(
-            gameState.getGhostPositions()[2][0]) + "," + str(gameState.getGhostPositions()[2][1]) + "," + str(
-            gameState.getGhostPositions()[3][0]) + "," + str(gameState.getGhostPositions()[3][1]) + "," + str(
-            gameState.getDistanceNearestFood()) + "," + str(gameState.data.agentStates[0].getDirection())
