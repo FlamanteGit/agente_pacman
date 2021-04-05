@@ -235,11 +235,11 @@ def get_next_score(gameState):
 class BasicAgentAA(BustersAgent):
 
     def registerInitialState(self, gameState):
-        # weka call
         BustersAgent.registerInitialState(self, gameState)
         self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = 0
-
+        self.weka = Weka()
+        self.weka.start_jvm()
 
     ''' Example of counting something'''
     def countFood(self, gameState):
@@ -321,22 +321,31 @@ class BasicAgentAA(BustersAgent):
         return move
 
     def chooseActionWeka(self, gameState):
-        #variable que almacena la instancia a ser clasificada
-        x = str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + ","
-        #concatenamos la informacion de los fantasmas a la variable x
-        living_ghost = gameState.getLivingGhosts().count(True)
-        x = x + str(living_ghost) + ","
+        #posicion del pacman en el eje x
+        x = [str(gameState.getPacmanPosition()[0])]
+        #posicion del pacman en el eje y
+        x = x + [str(gameState.getPacmanPosition()[1])]
+        #numero de fantasmas vivos
+        x = x + [str(gameState.getLivingGhosts().count(True))]
+        #fastama[i] vivo o muerto
         for i in range(1, len(gameState.getLivingGhosts())):
-            x = x + str(gameState.getLivingGhosts()[i]) + ","
+            x = x + [str(gameState.getLivingGhosts()[i])]
+        #direccion en la que se encuentra el fantasma más cercano
+        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'NORTH'))]
+        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'SOUTH'))]
+        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'WEST'))]
+        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'EAST'))]
+        #angulo al fantasma más cercano
+        x = x + [str(BasicAgentAA.angleClosestGhost(self, gameState))]
+        #indicador de pared en las distintas direcciones
+        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1]))]
+        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1))]
+        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1]))]
+        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1))]
+        #puntuacion actual
+        x = x + [str(gameState.getScore())]
 
-        x = x + str(BasicAgentAA.mostProbablyDirection(self, gameState))
-        x = x + str(BasicAgentAA.angleClosestGhost(self, gameState)) + ","
-        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1])) + ","
-        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1)) + ","
-        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1])) + ","
-        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1)) + ","
-
-        return self.weka.predict('./NaiveBayes.model', x, './ficheros/pruebas/training_keyboard.arff')
+        return self.weka.predict('./NaiveBayes.model', x, './ficheros/pruebas/training_keyboard_modified_no_discretized.arff')
 
 
     #todo almacena la informacion del tic anterior
@@ -413,3 +422,36 @@ class BasicAgentAA(BustersAgent):
         if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] < 0:
             up = True
         return str(up) + "," + str(down) + "," + str(left) + "," + str(right) + ","
+
+    def mostProbablyDirectionForWeka(self, gameState, direction):
+        index = 0
+        aux = 0
+        minDistance = 100
+        for ghost in gameState.data.ghostDistances:
+            if ghost is not None:
+                if ghost > 0 and ghost < minDistance:
+                    minDistance = ghost
+                    index = aux
+            aux += 1
+
+        up = False
+        down = False
+        left = False
+        right = False
+        if gameState.getPacmanPosition()[0] - gameState.getGhostPositions()[index][0] > 0:
+            left = True
+        if gameState.getPacmanPosition()[0] - gameState.getGhostPositions()[index][0] < 0:
+            right = True
+        if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] > 0:
+            down = True
+        if gameState.getPacmanPosition()[1] - gameState.getGhostPositions()[index][1] < 0:
+            up = True
+
+        if direction == 'NORTH':
+            return str(up)
+        elif direction == 'SOUTH':
+            return str(down)
+        elif direction == 'WEST':
+            return str(left)
+        elif direction == 'EAST':
+            return str(right)
