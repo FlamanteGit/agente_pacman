@@ -1,5 +1,6 @@
-from wekaI import Weka
 from __future__ import print_function
+
+from wekaI import Weka
 
 # bustersAgents.py
 # ----------------
@@ -75,6 +76,8 @@ class BustersAgent(object):
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
+        self.weka = Weka()
+        self.weka.start_jvm()
 
     def registerInitialState(self, gameState):
         "Initializes beliefs and inference modules"
@@ -233,8 +236,6 @@ class BasicAgentAA(BustersAgent):
 
     def registerInitialState(self, gameState):
         # weka call
-        self.weka = Weka()
-        self.weka.start_jvm()
         BustersAgent.registerInitialState(self, gameState)
         self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = 0
