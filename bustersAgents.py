@@ -1,5 +1,5 @@
-from __future__ import print_function
 from wekaI import Weka
+from __future__ import print_function
 
 # bustersAgents.py
 # ----------------
@@ -101,7 +101,7 @@ class BustersAgent(object):
         #        inf.observeState(gameState)
         #    self.ghostBeliefs[index] = inf.getBeliefDistribution()
         #self.display.updateDistributions(self.ghostBeliefs)
-        return self.chooseAction(gameState)
+        return self.chooseActionWeka(gameState)
 
     def chooseAction(self, gameState):
         "By default, a BustersAgent just stops.  This should be overridden."
@@ -232,11 +232,13 @@ def get_next_score(gameState):
 class BasicAgentAA(BustersAgent):
 
     def registerInitialState(self, gameState):
+        # weka call
+        self.weka = Weka()
+        self.weka.start_jvm()
         BustersAgent.registerInitialState(self, gameState)
         self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = 0
-        self.weka = Weka()
-        self.weka.start_jvm()
+
 
     ''' Example of counting something'''
     def countFood(self, gameState):
@@ -314,10 +316,26 @@ class BasicAgentAA(BustersAgent):
         #if   ( move_random == 1 ) and Directions.EAST in legal: move = Directions.EAST
         #if   ( move_random == 2 ) and Directions.NORTH in legal:   move = Directions.NORTH
         #if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
+
         return move
 
-    def chooseActionWeka(self):
+    def chooseActionWeka(self, gameState):
+        #variable que almacena la instancia a ser clasificada
+        x = str(gameState.getPacmanPosition()[0]) + "," + str(gameState.getPacmanPosition()[1]) + ","
+        #concatenamos la informacion de los fantasmas a la variable x
+        living_ghost = gameState.getLivingGhosts().count(True)
+        x = x + str(living_ghost) + ","
+        for i in range(1, len(gameState.getLivingGhosts())):
+            x = x + str(gameState.getLivingGhosts()[i]) + ","
 
+        x = x + str(BasicAgentAA.mostProbablyDirection(self, gameState))
+        x = x + str(BasicAgentAA.angleClosestGhost(self, gameState)) + ","
+        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1])) + ","
+        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1)) + ","
+        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1])) + ","
+        x = x + str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1)) + ","
+
+        return self.weka.predict('./NaiveBayes.model', x, './ficheros/pruebas/training_keyboard.arff')
 
 
     #todo almacena la informacion del tic anterior

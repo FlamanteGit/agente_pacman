@@ -721,12 +721,15 @@ class Game(object):
             self.rules.process(self.state, self)
 
             # Allow the important information to be printed in the output file
+            '''
             if agentIndex == 0:
                 self.extractInfo(action)
             # Allow to write the last 2 lines in the .arff file
             if self.state.getLivingGhosts().count(True) == 0:
                 self.extractInfo(action)
                 self.extractInfo(action)
+            '''
+            
 
             # Track progress
             if agentIndex == numAgents + 1: self.numMoves += 1
