@@ -321,31 +321,32 @@ class BasicAgentAA(BustersAgent):
         return move
 
     def chooseActionWeka(self, gameState):
+        x = []
         #posicion del pacman en el eje x
-        x = [str(gameState.getPacmanPosition()[0])]
+        #x.append(gameState.getPacmanPosition()[0])
         #posicion del pacman en el eje y
-        x = x + [str(gameState.getPacmanPosition()[1])]
+        #x.append(gameState.getPacmanPosition()[1])
         #numero de fantasmas vivos
-        x = x + [str(gameState.getLivingGhosts().count(True))]
+        #x.append(gameState.getLivingGhosts().count(True))
         #fastama[i] vivo o muerto
-        for i in range(1, len(gameState.getLivingGhosts())):
-            x = x + [str(gameState.getLivingGhosts()[i])]
+        #for i in range(1, len(gameState.getLivingGhosts())):
+            #x.append(str(gameState.getLivingGhosts()[i]))
         #direccion en la que se encuentra el fantasma más cercano
-        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'NORTH'))]
-        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'SOUTH'))]
-        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'WEST'))]
-        x = x + [str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'EAST'))]
+        x.append(str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'NORTH')))
+        x.append(str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'SOUTH')))
+        x.append(str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'WEST')))
+        x.append(str(BasicAgentAA.mostProbablyDirectionForWeka(self, gameState, 'EAST')))
         #angulo al fantasma más cercano
-        x = x + [str(BasicAgentAA.angleClosestGhost(self, gameState))]
+        x.append(BasicAgentAA.angleClosestGhost(self, gameState))
         #indicador de pared en las distintas direcciones
-        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1]))]
-        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1))]
-        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1]))]
-        x = x + [str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1))]
+        x.append(str(gameState.hasWall(gameState.getPacmanPosition()[0] - 1, gameState.getPacmanPosition()[1])))
+        x.append(str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] - 1)))
+        x.append(str(gameState.hasWall(gameState.getPacmanPosition()[0] + 1, gameState.getPacmanPosition()[1])))
+        x.append(str(gameState.hasWall(gameState.getPacmanPosition()[0], gameState.getPacmanPosition()[1] + 1)))
         #puntuacion actual
-        x = x + [str(gameState.getScore())]
+        #x.append(gameState.getScore())
 
-        return self.weka.predict('./NaiveBayes.model', x, './ficheros/pruebas/training_keyboard_modified_no_discretized.arff')
+        return self.weka.predict('./J48-bueno.model', x, './ficheros/pruebas/datos.arff')
 
 
     #todo almacena la informacion del tic anterior
